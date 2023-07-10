@@ -1,4 +1,6 @@
 using System;
+//using System.Data.SQLite;
+using System.IO;
 
 namespace SkoolpayConsoleApp
 {
@@ -34,6 +36,22 @@ namespace SkoolpayConsoleApp
             Console.WriteLine("\nPayment Details:");
             Console.WriteLine($"Amount: {paymentAmount:C}");
             Console.WriteLine($"Date: {paymentDate:d}");
+
+            // Save student data to file
+            string filePath = $"{studentName}"+"_receipt.txt";
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                writer.WriteLine("Student Details:");
+                writer.WriteLine($"Name: {studentName}");
+                writer.WriteLine($"Grade: {studentGrade}");
+                writer.WriteLine($"Contact Information: {contactInfo}");
+
+                writer.WriteLine("\nPayment Details:");
+                writer.WriteLine($"Amount: {paymentAmount:C}");
+                writer.WriteLine($"Date: {paymentDate:d}");
+            }
+
+            Console.WriteLine($"Student data saved to file: {filePath}");
 
             // Wait for user input before closing the console
             Console.WriteLine("\nPress any key to exit...");
